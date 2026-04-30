@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ty</title>
+  <title>projects · ty</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,8 +39,27 @@
       padding: 0 2rem;
     }
 
-    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; }
-    p { margin-bottom: 1.5rem; color: #222; }
+    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 2.5rem; }
+
+    .project {
+      padding: 1.75rem 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .project:last-child { border-bottom: 1px solid #e8e8e8; }
+
+    .project h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+
+    .project p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 0.6rem;
+    }
+
+    .project a.link {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+    }
 
     footer {
       max-width: 620px;
@@ -69,8 +88,17 @@
   </nav>
 
   <main>
-    <h1>Hi.</h1>
-    <p>I build things and read books. This is where some of that lives.</p>
+    <h1>Projects</h1>
+
+    <div class="project">
+      <h2>Singapore Stress Barometer</h2>
+      <p>
+        Testing whether unconventional signals — pawnshop pledges, retrenchment notices,
+        COE premiums — predict Singapore GDP contractions before official estimates.
+      </p>
+      <a class="link" href="https://tymatcha.github.io/sg-stress-barometer/">View →</a>
+    </div>
+
   </main>
 
   <footer><span id="year"></span> · tymatcha</footer>
