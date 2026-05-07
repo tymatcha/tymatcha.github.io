@@ -39,18 +39,37 @@
       padding: 0 2rem;
     }
 
-    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 2.5rem; }
+    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 2rem; }
 
-    .section-label {
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e8e8e8;
       font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #aaa;
-      margin-top: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
     }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.5rem 0;
+      margin-right: 2rem;
+      margin-bottom: -1px;
+      cursor: pointer;
+      color: #aaa;
+      font-size: 0.85rem;
+      font-family: inherit;
+    }
+
+    .tab-btn.active {
+      color: #111;
+      border-bottom-color: #111;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
     .project {
       padding: 1.75rem 0;
@@ -101,54 +120,72 @@
   <main>
     <h1>Projects</h1>
 
-    <p class="section-label">Client Work</p>
-
-    <div class="project">
-      <h2>Xumi Nail Sparkle</h2>
-      <p>
-        Landing page for a nail salon — clean, feminine aesthetic with service listings
-        and booking flow.
-      </p>
-      <a class="link" href="https://xumi-nail-sparkle.lovable.app">View →</a>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="personal">personal</button>
+      <button class="tab-btn" data-tab="client">client work</button>
     </div>
 
-    <div class="project">
-      <h2>Coffee &amp; Friends</h2>
-      <p>
-        Café website with menu, ambiance photos, and location details.
-      </p>
-      <a class="link" href="https://coffeenfriends.lovable.app">View →</a>
+    <div class="tab-panel active" id="personal">
+      <div class="project">
+        <h2>Singapore Stress Barometer</h2>
+        <p>
+          Testing whether unconventional signals — pawnshop pledges, retrenchment notices,
+          COE premiums — predict Singapore GDP contractions before official estimates.
+        </p>
+        <a class="link" href="https://tymatcha.github.io/sg-stress-barometer/">View →</a>
+      </div>
+
+      <div class="project">
+        <h2>Finding Clients</h2>
+        <p>
+          Scrapes Google Maps for Singapore businesses and generates a sales-ready lead list,
+          sorted by website quality so you know who to contact first.
+        </p>
+        <a class="link" href="https://github.com/tymatcha/findingclients">View →</a>
+      </div>
     </div>
 
-    <div class="project">
-      <h2>Beehoe Coffee</h2>
-      <p>
-        Branding site for a specialty coffee café.
-      </p>
-      <a class="link" href="https://beehoecoffee.lovable.app">View →</a>
-    </div>
+    <div class="tab-panel" id="client">
+      <div class="project">
+        <h2>Xumi Nail Sparkle</h2>
+        <p>
+          Landing page for a nail salon — clean, feminine aesthetic with service listings
+          and booking flow.
+        </p>
+        <a class="link" href="https://xumi-nail-sparkle.lovable.app">View →</a>
+      </div>
 
-    <div class="project">
-      <h2>Singapore Stress Barometer</h2>
-      <p>
-        Testing whether unconventional signals — pawnshop pledges, retrenchment notices,
-        COE premiums — predict Singapore GDP contractions before official estimates.
-      </p>
-      <a class="link" href="https://tymatcha.github.io/sg-stress-barometer/">View →</a>
-    </div>
+      <div class="project">
+        <h2>Coffee &amp; Friends</h2>
+        <p>
+          Café website with menu, ambiance photos, and location details.
+        </p>
+        <a class="link" href="https://coffeenfriends.lovable.app">View →</a>
+      </div>
 
-    <div class="project">
-      <h2>Finding Clients</h2>
-      <p>
-        Scrapes Google Maps for Singapore businesses and generates a sales-ready lead list,
-        sorted by website quality so you know who to contact first.
-      </p>
-      <a class="link" href="https://github.com/tymatcha/findingclients">View →</a>
+      <div class="project">
+        <h2>Beehoe Coffee</h2>
+        <p>
+          Branding site for a specialty coffee café.
+        </p>
+        <a class="link" href="https://beehoecoffee.lovable.app">View →</a>
+      </div>
     </div>
 
   </main>
 
   <footer><span id="year"></span> · tymatcha</footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
